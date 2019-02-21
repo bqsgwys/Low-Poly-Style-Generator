@@ -43,7 +43,7 @@ A Low Poly Style Picture Generator by Python
 ![效果图2](./example/02.jpg)
 ![效果图2](./example/02.jpglowpoly.jpg)
 
-***视频***效果请自行下载查看, 用时约2-3min，200帧，吃我罗小黑的安利！！！
+**_视频_**效果请自行下载查看, 用时约2-3min，200帧，吃我**罗小黑**的安利！！！
 
 ## 用法
 
