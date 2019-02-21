@@ -109,7 +109,7 @@ while True:
   frame[:] = (49, 52, 49)
   cvui.text(frame, 50, 750, 'Produced by BQSG', .6)
   cvui.beginColumn(frame, 10, 20)
-  if (cvui.button("OpenFile")):
+  if (cvui.button("&OpenFile")):
     file_path = filedialog.askopenfilename()
     # print(file_path)
     if isVideo[0]:
@@ -196,7 +196,7 @@ while True:
   cvui.endRow()
   cvui.space(5)
   cvui.beginRow()
-  if (cvui.button("Process")):
+  if (cvui.button("&Process")):
     if isVideo[0]:
       outcnt = 0
       for i in range(thds):
@@ -216,9 +216,7 @@ while True:
   cvui.space(10)
   cvui.text(getperc() + '%', 0.8)
   cvui.space(10)
-
   cvui.endColumn()
-  # Show window content
   if startFlag and outcnt == sumcnt:
     fps = cap.get(cv2.CAP_PROP_FPS)
     vw = None
