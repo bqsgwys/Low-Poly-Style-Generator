@@ -25,7 +25,7 @@ def getstep():
 def addstep():
   global STEP
   STEP = (STEP + 1) % 5
-  print(STEP)
+  # print(STEP)
 
 
 @jit(parallel=True)
@@ -221,9 +221,9 @@ def simplepoly(img,
   # smooth the picture
   imgx = cv2.GaussianBlur(img, kernalSize, 0)
   # get the GREY tunnel and the VALUE in HSV space
-  v = cv2.addWeighted(
-      cv2.split(cv2.cvtColor(imgx, cv2.COLOR_BGR2HSV))[2], 0.7,
-      cv2.cvtColor(imgx, cv2.COLOR_BGR2GRAY), 0.3, 0)
+  h, s, v = cv2.split(cv2.cvtColor(imgx, cv2.COLOR_BGR2HSV))
+  grey = cv2.cvtColor(imgx, cv2.COLOR_BGR2GRAY)
+  v = cv2.addWeighted(v, alpha, grey, 1 - alpha, 0)
   w = img.shape[0]
   h = img.shape[1]
   rect = (0, 0, h, w)
@@ -260,10 +260,12 @@ def simplepoly(img,
       cnt = 80
       if rectcontains(rect, (x, y)):
         bases.append((x, y))
+
   # calculate Delaunay Triangulation
   subdiv = cv2.Subdiv2D()
   subdiv.initDelaunay(rect)
   subdiv.insert(bases)
+
   # draw tringles
   triangleList = subdiv.getTriangleList()
   imgfinal = np.zeros(img.shape, np.uint8)
